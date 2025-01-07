@@ -3,10 +3,18 @@ from telegram import Update, WebAppInfo, InlineKeyboardButton, InlineKeyboardMar
 from telegram.ext import Application, CommandHandler, ContextTypes, CallbackQueryHandler
 import json
 import asyncio
+import os
+from dotenv import load_dotenv
 
-# Your website URL
-WEBSITE_URL = "https://dumkaweb.vercel.app"
-BOT_TOKEN = "7917008059:AAEdIRN2e4eia5TZ9VKj9B1Le810EOtxcMw"
+# Load environment variables
+load_dotenv()
+
+# Get environment variables
+WEBSITE_URL = os.getenv('WEBSITE_URL')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN environment variable is not set")
 
 async def handle_update(update_data):
     """Handle incoming updates."""
